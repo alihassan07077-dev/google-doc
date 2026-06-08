@@ -95,9 +95,37 @@ export function UploadDialog({ onClose }: UploadDialogProps) {
           type="button"
           onClick={() => inputRef.current?.click()}
           disabled={status === "loading"}
-          className="w-full rounded-md border-2 border-dashed border-zinc-300 px-4 py-8 text-sm font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:bg-zinc-50 disabled:opacity-50"
+          className="flex w-full flex-col items-center justify-center gap-3 rounded-md border-2 border-dashed border-zinc-300 px-4 py-8 text-sm font-medium text-zinc-600 transition-colors hover:border-zinc-400 hover:bg-zinc-50 disabled:opacity-50"
         >
-          {status === "loading" ? "Uploading…" : "Click to choose a file"}
+          {status === "loading" ? (
+            <>
+              <svg
+                className="h-6 w-6 animate-spin text-zinc-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Uploading…
+            </>
+          ) : (
+            <>
+              <svg
+                className="h-6 w-6 text-zinc-400"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+              </svg>
+              Click to choose a file
+            </>
+          )}
         </button>
 
         {error && (
