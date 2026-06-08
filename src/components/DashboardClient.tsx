@@ -31,6 +31,7 @@ export function DashboardClient({ ownedDocuments, sharedDocuments, loadError }: 
   const [shareTarget, setShareTarget] = useState<{ id: string; title: string } | null>(null);
   const [uploadOpen, setUploadOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [openingId, setOpeningId] = useState<string | null>(null);
 
   async function handleCreate() {
     setCreating(true);
@@ -159,9 +160,16 @@ export function DashboardClient({ ownedDocuments, sharedDocuments, loadError }: 
                   ) : (
                     <button
                       type="button"
-                      onClick={() => router.push(`/documents/${doc.id}`)}
-                      className="truncate text-left text-sm font-medium text-zinc-900 hover:underline"
+                      disabled={openingId === doc.id}
+                      onClick={() => { setOpeningId(doc.id); router.push(`/documents/${doc.id}`); }}
+                      className="flex items-center gap-1.5 truncate text-left text-sm font-medium text-zinc-900 hover:underline disabled:opacity-60"
                     >
+                      {openingId === doc.id && (
+                        <svg className="h-3.5 w-3.5 shrink-0 animate-spin text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                      )}
                       {doc.title}
                     </button>
                   )}
@@ -212,9 +220,16 @@ export function DashboardClient({ ownedDocuments, sharedDocuments, loadError }: 
                 <div className="min-w-0 flex-1">
                   <button
                     type="button"
-                    onClick={() => router.push(`/documents/${doc.id}`)}
-                    className="truncate text-left text-sm font-medium text-zinc-900 hover:underline"
+                    disabled={openingId === doc.id}
+                    onClick={() => { setOpeningId(doc.id); router.push(`/documents/${doc.id}`); }}
+                    className="flex items-center gap-1.5 truncate text-left text-sm font-medium text-zinc-900 hover:underline disabled:opacity-60"
                   >
+                    {openingId === doc.id && (
+                      <svg className="h-3.5 w-3.5 shrink-0 animate-spin text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                    )}
                     {doc.title}
                   </button>
                   <p className="mt-0.5 text-xs text-zinc-500">
