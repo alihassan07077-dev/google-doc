@@ -23,8 +23,10 @@ function ToolbarButton({ onClick, active, disabled, label, children }: ToolbarBu
       aria-pressed={active}
       disabled={disabled}
       onClick={onClick}
-      className={`flex h-8 min-w-8 items-center justify-center rounded-md px-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
-        active ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-200"
+      className={`flex h-8 min-w-8 items-center justify-center rounded-lg px-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-40 ${
+        active
+          ? "bg-indigo-600 text-white shadow-sm"
+          : "text-zinc-600 hover:bg-indigo-50 hover:text-indigo-700"
       }`}
     >
       {children}
@@ -38,7 +40,7 @@ export function Toolbar({ editor, readOnly }: ToolbarProps) {
   const disabled = readOnly;
 
   return (
-    <div className="flex flex-wrap items-center gap-1 border-b border-zinc-200 bg-zinc-50 px-3 py-2">
+    <div className="flex flex-wrap items-center gap-1 border-b border-zinc-200 bg-white px-3 py-2">
       <ToolbarButton
         label="Bold"
         active={editor.isActive("bold")}
@@ -64,7 +66,7 @@ export function Toolbar({ editor, readOnly }: ToolbarProps) {
         <span className="underline">U</span>
       </ToolbarButton>
 
-      <div className="mx-1 h-5 w-px bg-zinc-300" />
+      <div className="mx-1 h-5 w-px bg-zinc-200" />
 
       <ToolbarButton
         label="Heading 1"
@@ -91,7 +93,7 @@ export function Toolbar({ editor, readOnly }: ToolbarProps) {
         ¶
       </ToolbarButton>
 
-      <div className="mx-1 h-5 w-px bg-zinc-300" />
+      <div className="mx-1 h-5 w-px bg-zinc-200" />
 
       <ToolbarButton
         label="Bulleted list"
