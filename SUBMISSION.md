@@ -13,9 +13,7 @@
 
 ## Live deployment
 
-> Fill in the Vercel deployment URL once deployed.
-
-**URL:** `https://assignment-YOURNAME.vercel.app`
+**URL:** https://google-doc-kohl.vercel.app
 
 ## Test accounts
 
